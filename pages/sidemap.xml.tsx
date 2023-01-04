@@ -14,8 +14,8 @@ const createSitemap = (pages: string[]) => `<?xml version="1.0" encoding="UTF-8"
 
 export async function getServerSideProps({ res }: { res: any }) {
   const allPages = [
-    ...['', 'projects'].map((page) => `https://pkkulhari.com/${page}`),
-    'https://blog.pkkulhari.com',
+    ...['', 'projects'].map((page) => `http://www.pkkulhari.com/${page}`),
+    'http://blog.pkkulhari.com',
   ]
 
   res.setHeader('Content-Type', 'text/xml')
