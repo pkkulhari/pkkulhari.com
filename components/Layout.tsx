@@ -15,7 +15,7 @@ const Layout = ({ children, ...customMeta }: Props) => {
     title: 'Praveen Kumar - DevOps Engineer & Full Stack Developer',
     description:
       'Building fast and scalable web applications with a modern tech stack. Exploring DevOps world - Kubernetes, CI/CD, Terraform, etc.',
-    image: 'http://pkkulhari.com/static/images/praveen-banner.png',
+    image: 'https://pkkulhari.com/static/images/praveen-banner.png',
     type: 'website',
     ...customMeta,
   }
@@ -26,8 +26,8 @@ const Layout = ({ children, ...customMeta }: Props) => {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`http://pkkulhari.com${router.asPath}`} />
-        <link rel="canonical" href={`http://pkkulhari.com${router.asPath}`} />
+        <meta property="og:url" content={`https://pkkulhari.com${router.asPath}`} />
+        <link rel="canonical" href={`https://pkkulhari.com${router.asPath}`} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Praveen Kumar" />
         <meta property="og:description" content={meta.description} />
