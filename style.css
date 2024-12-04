@@ -2,7 +2,7 @@
   --bg-color: #ffffff;
   --text-color: #2c3e50;
   --accent-color: #3498db;
-  --secondary-color: #083e42;
+  --secondary-color: #64748b;
   --border-color: #e1e8ed;
   --container-width: 680px;
 }
@@ -203,6 +203,82 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Timeline styles */
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: var(--border-color);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -6px;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  border: 2px solid var(--bg-color);
+}
+
+.timeline-content {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.timeline-content h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+}
+
+.timeline-date {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-company {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.timeline-content ul {
+  list-style-position: inside;
+  margin-top: 0.5rem;
+}
+
+.timeline-content li {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.timeline-content li:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 640px) {
   header {
     flex-direction: column;
@@ -221,5 +297,17 @@ footer {
 
   .skill-category {
     margin-bottom: 1rem;
+  }
+
+  .timeline::before {
+    left: 1rem;
+  }
+  
+  .timeline-item {
+    padding-left: 3.5rem;
+  }
+  
+  .timeline-dot {
+    left: calc(1rem - 6px);
   }
 }
