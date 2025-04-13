@@ -1,0 +1,124 @@
+---
+const blogPosts = [
+  {
+    title: 'Understanding React Hooks: A Deep Dive',
+    date: 'January 15, 2024',
+    readTime: '5 min read',
+    excerpt:
+      'An in-depth exploration of React Hooks and how they revolutionize state management in functional components.',
+    slug: 'understanding-react-hooks',
+  },
+  {
+    title: 'Modern CSS Techniques for Better Layouts',
+    date: 'January 10, 2024',
+    readTime: '4 min read',
+    excerpt:
+      'Exploring modern CSS techniques like Grid, Flexbox, and Custom Properties for building better layouts.',
+    slug: 'modern-css-techniques',
+  },
+  {
+    title: 'Node.js Best Practices for Production',
+    date: 'January 5, 2024',
+    readTime: '6 min read',
+    excerpt:
+      'Essential best practices and tips for deploying Node.js applications in production environments.',
+    slug: 'nodejs-best-practices',
+  },
+]
+---
+
+<section id="blog">
+  <h2>Latest Blog Posts</h2>
+  <div class="blog-posts">
+    {
+      blogPosts.map((post) => (
+        <article class="blog-post">
+          <h3>
+            <a href={`/blog/${post.slug}`}>{post.title}</a>
+          </h3>
+          <p class="post-meta">
+            {post.date} • {post.readTime}
+          </p>
+          <p class="post-excerpt">{post.excerpt}</p>
+          <a href={`/blog/${post.slug}`} class="read-more">
+            Read More →
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    margin-bottom: 4rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-color);
+  }
+
+  .blog-posts {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .blog-post {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+  }
+
+  .blog-post:hover {
+    border-color: var(--accent-color);
+  }
+
+  .blog-post h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-post h3 a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .blog-post h3 a:hover {
+    color: var(--accent-color);
+  }
+
+  .post-meta {
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-excerpt {
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .read-more {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    .blog-posts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

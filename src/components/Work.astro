@@ -1,0 +1,68 @@
+---
+const projects = [
+  {
+    title: 'Zofi (Occupational Health Management System)',
+    description:
+      'Developed and managed a comprehensive health management software for Dr. Ultimate Hospital, digitalizing processes including annual health checkups and casualty treatment, with QR code-based workflow.',
+    tech: ['Django', 'PostgreSQL', 'React.js', 'Ant Design', 'AWS'],
+  },
+]
+---
+
+<section id="work">
+  <h2>Freelance Work</h2>
+  <div class="projects">
+    {
+      projects.map((project) => (
+        <article class="project">
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+          <div class="tech">{project.tech.join(' • ')}</div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    margin-bottom: 4rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-color);
+  }
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .project {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+  }
+
+  .project h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .project p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+  }
+
+  .tech {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+  }
+</style>

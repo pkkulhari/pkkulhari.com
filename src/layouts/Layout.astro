@@ -1,0 +1,115 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <slot />
+      <footer>
+        <p>&copy; {new Date().getFullYear()} Praveen Kumar</p>
+      </footer>
+    </div>
+    <script>
+      // Theme handling
+      const getTheme = () => {
+        const savedTheme = localStorage.getItem('theme')
+        if (savedTheme) return savedTheme
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+      }
+
+      const setTheme = (theme: string) => {
+        document.documentElement.dataset.theme = theme
+        localStorage.setItem('theme', theme)
+      }
+
+      // Initialize theme
+      const currentTheme = getTheme()
+      if (currentTheme) {
+        setTheme(currentTheme)
+      }
+
+      // Listen for system theme changes
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', (e) => {
+          if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'dark' : 'light')
+          }
+        })
+    </script>
+    <style is:global>
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #2c3e50;
+        --accent-color: #3498db;
+        --secondary-color: #64748b;
+        --border-color: #e1e8ed;
+        --container-width: 680px;
+      }
+
+      :root[data-theme='dark'] {
+        --bg-color: #0f172a;
+        --text-color: #e2e8f0;
+        --accent-color: #60a5fa;
+        --secondary-color: #94a3b8;
+        --border-color: #1e293b;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg-color: #0f172a;
+          --text-color: #e2e8f0;
+          --accent-color: #60a5fa;
+          --secondary-color: #94a3b8;
+          --border-color: #1e293b;
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      footer {
+        margin-top: 6rem;
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<header>
+  <div class="profile">
+    <h1>Praveen Kumar</h1>
+    <p class="role">Sr. Software Engineer</p>
+  </div>
+  <nav>
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <svg
+        class="sun"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg
+        class="moon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<script>
+  // Theme toggle functionality
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const currentTheme = localStorage.getItem('theme') || 'light'
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    document.documentElement.dataset.theme = newTheme
+    localStorage.setItem('theme', newTheme)
+  })
+</script>
+
+<style>
+  header {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .profile h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .role {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  nav a:hover {
+    color: var(--accent-color);
+  }
+
+  #theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--text-color);
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #theme-toggle:hover {
+    color: var(--accent-color);
+  }
+
+  #theme-toggle .sun {
+    display: none;
+  }
+
+  #theme-toggle .moon {
+    display: block;
+  }
+
+  :global(:root[data-theme='dark']) #theme-toggle .sun {
+    display: block;
+  }
+
+  :global(:root[data-theme='dark']) #theme-toggle .moon {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import About from '../components/About.astro'
+import Experience from '../components/Experience.astro'
+import Skills from '../components/Skills.astro'
+import Work from '../components/Work.astro'
+import Blog from '../components/Blog.astro'
+import Contact from '../components/Contact.astro'
+---
+
+<Layout title="Praveen Kumar | Sr. Software Engineer">
+  <Header />
+  <main>
+    <About />
+    <Experience />
+    <Skills />
+    <Work />
+    <Blog />
+    <Contact />
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: var(--container-width);
+    margin: 0 auto;
+  }
+</style>

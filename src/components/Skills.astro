@@ -1,0 +1,67 @@
+---
+const skills = {
+  Frontend: ['React.js', 'Next.js', 'Vue.js', 'TypeScript', 'Tailwind CSS'],
+  Backend: ['Python', 'Django', 'FastAPI', 'Golang', 'PostgreSQL'],
+  DevOps: ['Git', 'Docker', 'CI/CD', 'AWS (EC2, S3, RDS)', 'VPS'],
+}
+---
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    {
+      Object.entries(skills).map(([category, items]) => (
+        <div class="skill-category">
+          <h3>{category}</h3>
+          <ul>
+            {items.map((skill) => (
+              <li>{skill}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    margin-bottom: 4rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-color);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .skill-category h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-color);
+  }
+
+  .skill-category ul {
+    list-style: none;
+  }
+
+  .skill-category li {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
