@@ -14,4 +14,4 @@ content:
       - { name: publishDate, label: Publish Date, type: date }
       - { name: image, label: Image, type: image }
       - { name: draft, label: Draft, type: boolean, default: false }
-      - { name: content, label: Content, type: rich-text }
+      - { name: body, label: Body, type: rich-text }
