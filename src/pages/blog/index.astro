@@ -1,24 +1,32 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
-import { formatDate } from '../utils/date'
+import Layout from '../../layouts/Layout.astro'
+import { formatDate } from '../../utils/date'
+import Header from '../../components/Header.astro'
 
-const allPosts = await getCollection('blog', ({ data }: { data: any }) => {
+const allPosts = await getCollection('blog', ({ data }) => {
   return import.meta.env.PROD ? !data.draft : true
 })
 
-const recentPosts = allPosts
-  .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
+const sortedPosts = allPosts.sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
     return b.data.publishDate.getTime() - a.data.publishDate.getTime()
-  })
-  .slice(0, 3)
+  }
+)
 ---
 
-{
-  recentPosts.length > 0 && (
-    <section id="blog">
-      <h2>Latest Posts</h2>
-      <div class="blog-posts">
-        {recentPosts.map((post) => (
+<Layout title="Blog | Praveen Kumar">
+  <Header />
+  <div class="blog-container">
+    <h1>Blog</h1>
+    <p class="blog-intro">
+      Thoughts, ideas, and insights on artificial intelligence, programming, and
+      technology.
+    </p>
+
+    <div class="blog-list">
+      {
+        sortedPosts.map((post) => (
           <article class="blog-post">
             <h3>
               <a href={`/blog/${post.slug}`}>{post.data.title}</a>
@@ -29,30 +37,32 @@ const recentPosts = allPosts
               Read More →
             </a>
           </article>
-        ))}
-        <div class="view-all">
-          <a href="/blog" class="view-all-link">
-            View All Posts →
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
+        ))
+      }
+    </div>
+  </div>
+</Layout>
 
 <style>
-  section {
-    margin-bottom: 4rem;
+  .blog-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
   }
 
-  h2 {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
     font-family: 'JetBrains Mono', monospace;
     color: var(--text-color);
   }
 
-  .blog-posts {
+  .blog-intro {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .blog-list {
     display: grid;
     gap: 2rem;
   }
@@ -106,31 +116,8 @@ const recentPosts = allPosts
     text-decoration: underline;
   }
 
-  .view-all {
-    text-align: center;
-  }
-
-  .view-all-link {
-    display: inline-block;
-    color: var(--accent-color);
-    font-family: 'JetBrains Mono', monospace;
-    text-decoration: none;
-    font-size: 0.95rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease;
-  }
-
-  .view-all-link:hover {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-  }
-
   @media (min-width: 768px) {
-    .blog-posts {
+    .blog-list {
       grid-template-columns: 1fr;
     }
   }
